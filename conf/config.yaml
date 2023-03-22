@@ -1,0 +1,16 @@
+app:
+  name: "blog"
+  mode: "dev"
+  port: 8081
+  version: v0.0.1
+  start_time: "2020-07-01"
+  machine_id: 1
+  jwt_expire: 240
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  username: "root"
+  password: "lihuawei"
+  dbname: "myblog"
+  max_open_conns: 20
+  max_idle_conns: 10

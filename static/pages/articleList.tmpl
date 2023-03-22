@@ -1,0 +1,27 @@
+{{ define "articleList.tmpl" }}
+
+{{ template "head.tmpl" . }}
+
+<div class="container">
+    <h1>Blog List</h1>
+    <div class="row">
+        <div class="col-md-12">
+            {{range .Data}}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3><a href="/detail/{{.ArticleID}}">{{.Title}}</a></h3>
+                    <p>{{.Short}}</p>
+                    <p><small class="text-muted">Published on {{.CreatedAt}}</small></p>
+                    <p><small class="text-muted">{{.ReadNum}} reads  </small>
+                        <small class="text-muted">{{.LikeNum}} Likes</small>
+                    </p>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>
+
+{{ template "footer.tmpl" . }}
+
+{{ end }}

@@ -1,0 +1,45 @@
+
+{{ define "detail.tmpl" }}
+
+{{ template "head.tmpl" . }}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{.Data.Title}}</h2>
+                <p class="blog-post-meta">发布日期: {{.Data.CreatedAt}} 更新日期:{{.Data.UpdatedAt}} </p>
+                <p class="blog-post-meta">by <a href="#"> {{.Data.Author}}</a> </p>
+
+                <pre id="pre" style="width: 120%">{{.Data.Content}}</pre>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><span class="glyphicon glyphicon-thumbs-up"></span> 点赞数量: {{.Data.LikeNum}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><span class="glyphicon glyphicon-eye-open"></span> 阅读数量: {{.Data.ReadNum}}</p>
+                    </div>
+                </div>
+            </div><!-- /.blog-post -->
+        </div><!-- /.col-md-8 -->
+        <div class="col-md-4">
+            <div class="sidebar-module">
+                <h4>推荐内容</h4>
+                <ol class="list-unstyled">
+                    <li><a href="#">文章标题1</a></li>
+                    <li><a href="#">文章标题2</a></li>
+                    <li><a href="#">文章标题3</a></li>
+                </ol>
+            </div><!-- /.sidebar-module -->
+        </div><!-- /.col-md-4 -->
+    </div><!-- /.row -->
+</div><!-- /.container -->
+<script>
+    var a= document.getElementById("pre")
+    a.innerHTML=a.innerText
+</script>
+{{ template "footer.tmpl" . }}
+
+{{ end }}

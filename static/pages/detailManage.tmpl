@@ -1,0 +1,37 @@
+
+{{ define "detailManage.tmpl" }}
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+<link rel="stylesheet" href="/xxx/css/style.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{.Data.Title}}</h2>
+                <p class="blog-post-meta">发布日期: {{.Data.CreatedAt}} 更新日期:{{.Data.UpdatedAt}} </p>
+                <p class="blog-post-meta">by <a href="#"> {{.Data.Author}}</a> </p>
+                <hr>
+                <pre id="pre" style="width: 150%">{{.Data.Content}}</pre>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><span class="glyphicon glyphicon-thumbs-up"></span> 点赞数量: {{.Data.LikeNum}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><span class="glyphicon glyphicon-eye-open"></span> 阅读数量: {{.Data.ReadNum}}</p>
+                    </div>
+                </div>
+            </div><!-- /.blog-post -->
+        </div><!-- /.col-md-8 -->
+    </div><!-- /.row -->
+</div><!-- /.container -->
+
+<script>
+    let a= document.getElementById("pre")
+    a.innerHTML=a.innerText
+</script>
+{{ end }}

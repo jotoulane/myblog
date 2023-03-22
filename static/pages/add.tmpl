@@ -1,0 +1,52 @@
+{{ define "add.tmpl" }}
+
+<!-- Bootstrap CSS -->
+<!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>-->
+<!--<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>-->
+<link rel="stylesheet" href="/xxx/css/style.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="/xxx/js/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/xxx/css/simplemde.min.css">
+<script src="/xxx/js/simplemde.min.js"></script>
+
+<!--&lt;!&ndash; 引入富文本编辑器的样式文件 &ndash;&gt;-->
+<!--<link rel="stylesheet" href="/xxx/css/quill.snow.css">-->
+<!--&lt;!&ndash; 引入富文本编辑器的脚本文件 &ndash;&gt;-->
+<!--<script src="/xxx/js/quill.js"></script>-->
+
+<div class="container my-5">
+  <form action="/new" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="form-group">
+      <label for="blogTitle">标题</label>
+      <input type="text" name="title" class="form-control" id="blogTitle" placeholder="Enter title" required>
+    </div>
+    <div class="form-group">
+      <label for="blogContent">内容</label>
+      <!--markdown编辑器-->
+      <div class="row">
+        <div class="col-md-12">
+          <textarea id="blogContent" name="content"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="blogShort">摘要</label>
+      <input type="text" name="short" class="form-control" id="blogShort" placeholder="Enter tags" required>
+    </div>
+    <div class="form-group">
+      <label for="blogTags">标签</label>
+      <input type="text" name="tags" class="form-control" id="blogTags" placeholder="Enter tags" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Publish</button>
+  </form>
+</div>
+
+<script>
+  var simplemde = new SimpleMDE({ element: $("#blogContent")[0] });
+  simplemde.render();
+</script>
+
+{{ end }}

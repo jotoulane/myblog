@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>提示</title>
+  <!-- 引入 Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- 引入 Bootstrap JS -->
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/xxx/css/style.css">
+</head>
+<body class="body_background">
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">提示</h5>
+        </div>
+        <div class="card-body">
+          <p>{{.Msg}}</p>
+        </div>
+        <div class="card-footer">
+          <a href="{{.Data}}" class="btn btn-primary">返回</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+
+{{ define "manage.tmpl" }}
+
+{{ template "head.tmpl" . }}
+<script type="application/javascript">
+    function change(url,index){
+        $(".list-group-item").removeClass("active");
+        $(".list-group-item").eq(index).addClass("active");
+        $("iframe").attr("src","/"+url);
+    }
+</script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <a href="javascript:void(0)" class="list-group-item active" onclick="change('manage/lists',0)">
+						<span class="" aria-hidden="true">
+							<i class="fa fa-shopping-bag fa-fw"></i>
+						</span> Article
+            </a>
+            <a href="javascript:void(0)" class="list-group-item" onclick="change('new',1)">
+						<span class="" aria-hidden="true">
+							<i class="fa fa-cart-plus fa-fw"></i>
+						</span> New
+            </a>
+
+
+        </div>
+        <!--右边内容-->
+        <iframe style="width: 81%; height: 600px; border: 0px;" src="/manage/lists"></iframe>
+    </div>
+</div>
+
+{{ template "footer.tmpl" . }}
+
+{{ end }}

@@ -1,0 +1,45 @@
+{{ define "home.tmpl" }}
+
+{{ template "head.tmpl" . }}
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Welcome to My Blog</h1>
+            <p>It is a space to share life, think about life, and record growth.
+                I will share my thoughts here, record what I see and hear,
+                and discuss the bits and pieces of life with you.</p>
+            <p>I believe that everyone has their own unique stories and experiences,
+                and these stories and experiences are the source of our growth.
+                Here, I hope to share my upbringing with you
+                and look forward to hearing your stories and experiences.</p>
+            <p>Here are my latest thoughts and most interesting stories that
+                I hope will help you understand my world better and give you some inspiration.</p>
+        </div>
+        <div class="col-md-4">
+            <h3>Categories</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#">Category 1</a></li>
+                <li class="list-group-item"><a href="#">Category 2</a></li>
+                <li class="list-group-item"><a href="#">Category 3</a></li>
+            </ul>
+            <h3>Recent Posts</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="#">Recent Post 1</a></li>
+                <li class="list-group-item"><a href="#">Recent Post 2</a></li>
+                <li class="list-group-item"><a href="#">Recent Post 3</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2023 My Blog. All Rights Reserved.</p>
+    </div>
+</footer>
+
+{{ template "footer.tmpl" . }}
+
+{{ end }}
