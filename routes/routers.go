@@ -24,13 +24,10 @@ func SetUp() *gin.Engine {
 		context.HTML(http.StatusOK, "login.tmpl", gin.H{}) //模板渲染
 	})
 	//主页面
-	r.GET("/home", func(context *gin.Context) {
-		context.HTML(http.StatusOK, "home.tmpl", gin.H{}) //模板渲染
-	})
-	////主页面
 	//r.GET("/", func(context *gin.Context) {
-	//	context.HTML(http.StatusOK, "index.html", gin.H{}) //模板渲染
+	//	context.HTML(http.StatusOK, "home.tmpl", gin.H{}) //模板渲染
 	//})
+	r.GET("/", controllers.HomePage)
 	//新建文章
 	r.GET("/new", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "add.tmpl", gin.H{}) //模板渲染
@@ -58,9 +55,9 @@ func SetUp() *gin.Engine {
 	//文章列表
 	r.GET("/lists", controllers.ListArticle)
 
+	r.GET("/lists/:tags", controllers.ListTagsArticle)
 	//文章详情
 	r.GET("/detail/:id", controllers.DetailArticle)
-
 	//文章管理列表
 	r.GET("/manage/lists", controllers.ManageListArticle)
 	////文章管理列表,包括已经删除的文章

@@ -33,6 +33,16 @@ func ListArticle() ([]model.Article, error) {
 	return mysql.ListArticle()
 }
 
+// ListTagsArticle 根据标签查询文章列表
+func ListTagsArticle(tags string) ([]model.Article, error) {
+	return mysql.ListTagsArticle(tags)
+}
+
+// LatestArticles 查询最新文章
+func LatestArticles() ([]model.Article, error) {
+	return mysql.LatestArticles()
+}
+
 func DetailArticle(articleID int64) (model.Article, error) {
 	return mysql.DetailArticle(articleID)
 }
