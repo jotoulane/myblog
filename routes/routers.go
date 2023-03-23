@@ -27,6 +27,10 @@ func SetUp() *gin.Engine {
 	r.GET("/home", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "home.tmpl", gin.H{}) //模板渲染
 	})
+	////主页面
+	//r.GET("/", func(context *gin.Context) {
+	//	context.HTML(http.StatusOK, "index.html", gin.H{}) //模板渲染
+	//})
 	//新建文章
 	r.GET("/new", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "add.tmpl", gin.H{}) //模板渲染
