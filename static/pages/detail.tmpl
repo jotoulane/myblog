@@ -16,7 +16,8 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <p><span class="glyphicon glyphicon-thumbs-up"></span> 点赞数量: {{.Data.LikeNum}}</p>
+                        <p><span onclick="like('{{.Data.ArticleID}}')" class="glyphicon glyphicon-thumbs-up"></span>
+                            点赞数量: <span id="likes">{{.Data.LikeNum}}</span> </p>
                     </div>
                     <div class="col-md-6">
                         <p><span class="glyphicon glyphicon-eye-open"></span> 阅读数量: {{.Data.ReadNum}}</p>
@@ -24,21 +25,21 @@
                 </div>
             </div><!-- /.blog-post -->
         </div><!-- /.col-md-8 -->
-        <div class="col-md-4">
-            <div class="sidebar-module">
-                <h4>推荐内容</h4>
-                <ol class="list-unstyled">
-                    <li><a href="#">文章标题1</a></li>
-                    <li><a href="#">文章标题2</a></li>
-                    <li><a href="#">文章标题3</a></li>
-                </ol>
-            </div><!-- /.sidebar-module -->
-        </div><!-- /.col-md-4 -->
     </div><!-- /.row -->
 </div><!-- /.container -->
 <script>
     var a= document.getElementById("pre")
     a.innerHTML=a.innerText
+    function like(ArticleID){
+        axios({
+            method:"get",
+            url:"http://localhost:8081/like/"+ArticleID
+        }).then(function (resp){
+            let a = resp.data;
+            console.log(a);
+            document.getElementById('likes').innerText++
+        })
+    }
 </script>
 {{ template "footer.tmpl" . }}
 

@@ -7,9 +7,24 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"web01/dao/redis"
 	"web01/model"
 	"web01/service"
 )
+
+func HomePage(c *gin.Context) {
+	//articles := make([]model.ParamLatestArticles, 3)
+	articles, err := service.LatestArticles()
+	if err != nil {
+		log.Printf("service.LatestArticles() failed, err: %v\n", err)
+		return
+	}
+	c.HTML(http.StatusOK, "home.tmpl", model.ResponseData{
+		Code: 200,
+		Msg:  nil,
+		Data: articles,
+	})
+}
 
 // NewArticle 新建文章
 func NewArticle(c *gin.Context) {
@@ -49,6 +64,24 @@ func ListArticle(c *gin.Context) {
 	})
 }
 
+// ListTagsArticle 文章列表，根据tags
+func ListTagsArticle(c *gin.Context) {
+	param := c.Param("tags")
+	articles, err := service.ListTagsArticle(param)
+	if err != nil {
+		log.Printf("service.ListTagsArticle(params) failed, err: %v\n", err)
+	}
+	for i := 0; i < len(articles); i++ {
+		nums, _ := redis.GetViewNums(strconv.FormatInt(articles[i].ArticleID, 10))
+		articles[i].ReadNum = nums
+	}
+	c.HTML(http.StatusOK, "articleList.tmpl", model.ResponseData{
+		Code: 200,
+		Msg:  "查询成功",
+		Data: articles,
+	})
+}
+
 // ManageListArticle 管理员文章列表
 func ManageListArticle(c *gin.Context) {
 	articles, err := service.ListArticle()
@@ -73,7 +106,26 @@ func DetailArticle(c *gin.Context) {
 	if err != nil {
 		log.Printf("service.DetailArticle(article.ArticleID) failed,err:%v\n", err)
 	}
-	//将输入的makedown格式的内容转化为html元素进行渲染
+	//写入阅读数量的redis数据
+	err = redis.AddViewNums(param)
+	if err != nil {
+		log.Printf("redis.AddViewNums(param) failed, err: %v\n", err)
+	}
+	//读取阅读数量的redis数据
+	nums, err := redis.GetViewNums(param)
+	if err != nil {
+		log.Printf("redis.GetViewNums(param) failed, err: %v\n", err)
+	}
+	detailArticle.ReadNum = nums
+
+	//读取喜欢数量的redis数据
+	numsLike, err2 := redis.GetLikeNums(param)
+	if err2 != nil {
+		log.Printf("redis.GetLikeNums(param) failed, err: %v\n", err)
+	}
+	detailArticle.LikeNum = numsLike
+
+	//将输入的markdown格式的内容转化为html元素进行渲染
 	html := blackfriday.MarkdownCommon([]byte(detailArticle.Content))
 	detailArticle.Content = string(html)
 	c.HTML(http.StatusOK, "detail.tmpl", model.ResponseData{
@@ -94,7 +146,26 @@ func ManageDetailArticle(c *gin.Context) {
 	if err != nil {
 		log.Printf("service.DetailArticle(article.ArticleID) failed,err:%v\n", err)
 	}
-	//将输入的makedown格式的内容转化为html元素进行渲染
+	//写入阅读数量的redis数据
+	err = redis.AddViewNums(param)
+	if err != nil {
+		log.Printf("redis.AddViewNums(param) failed, err: %v\n", err)
+	}
+	//读取阅读数量的redis数据
+	nums, err := redis.GetViewNums(param)
+	if err != nil {
+		log.Printf("redis.GetViewNums(param) failed, err: %v\n", err)
+	}
+	detailArticle.ReadNum = nums
+
+	//读取喜欢数量的redis数据
+	numsLike, err2 := redis.GetLikeNums(param)
+	if err2 != nil {
+		log.Printf("redis.GetLikeNums(param) failed, err: %v\n", err)
+	}
+	detailArticle.LikeNum = numsLike
+
+	//将输入的markdown格式的内容转化为html元素进行渲染
 	html := blackfriday.MarkdownCommon([]byte(detailArticle.Content))
 	detailArticle.Content = string(html)
 	c.HTML(http.StatusOK, "detailManage.tmpl", model.ResponseData{
@@ -169,4 +240,10 @@ func ManageDeleteSubmit(c *gin.Context) {
 		Msg:  "删除成功",
 		Data: "/manage/lists",
 	})
+}
+
+func LikeArticle(c *gin.Context) {
+	param := c.Param("id")
+	log.Printf("id param: %v\n", param)
+	service.LikeArticle(param)
 }

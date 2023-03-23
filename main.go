@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"web01/dao/mysql"
+	"web01/dao/redis"
 	"web01/routes"
 	"web01/settings"
 	"web01/util"
@@ -24,6 +25,12 @@ func main() {
 	//初始化MySQL连接
 	if err := mysql.Init(); err != nil {
 		fmt.Printf("Init mysql failed, err: %v\n", err)
+		return
+	}
+
+	//初始化redis连接
+	if err := redis.Init(); err != nil {
+		fmt.Printf("Init redis failed, err: %v\n", err)
 		return
 	}
 

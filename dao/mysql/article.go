@@ -34,6 +34,19 @@ func ListArticle() (articles []model.Article, err error) {
 	return articles, tx.Error
 }
 
+func ListTagsArticle(tags string) (articles []model.Article, err error) {
+	articles = make([]model.Article, 0)
+	tx := db.Where("tags=?", tags).Find(&articles)
+	return articles, tx.Error
+}
+
+func LatestArticles() (articles []model.Article, err error) {
+	articles = make([]model.Article, 0)
+	//tx := db.Select("article_id", "title").Order("created_at").Limit(3).Find(&articles)
+	tx := db.Order("created_at desc").Limit(4).Find(&articles)
+	return articles, tx.Error
+}
+
 func DetailArticle(articleID int64) (article model.Article, err error) {
 	tx := db.Where("article_id=?", articleID).Find(&article)
 	return article, tx.Error

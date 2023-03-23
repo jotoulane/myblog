@@ -19,7 +19,8 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-6">
-                        <p><span class="glyphicon glyphicon-thumbs-up"></span> 点赞数量: {{.Data.LikeNum}}</p>
+                        <p><span onclick="like('{{.Data.ArticleID}}')" class="glyphicon glyphicon-thumbs-up"></span>
+                            点赞数量: <span id="likes">{{.Data.LikeNum}}</span> </p>
                     </div>
                     <div class="col-md-6">
                         <p><span class="glyphicon glyphicon-eye-open"></span> 阅读数量: {{.Data.ReadNum}}</p>
@@ -31,6 +32,16 @@
 </div><!-- /.container -->
 
 <script>
+    function like(ArticleID){
+        axios({
+            method:"get",
+            url:"http://localhost:8081/like/"+ArticleID
+        }).then(function (resp){
+            let a = resp.data;
+            console.log(a);
+            document.getElementById('likes').innerText++
+        })
+    }
     let a= document.getElementById("pre")
     a.innerHTML=a.innerText
 </script>

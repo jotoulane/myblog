@@ -14,3 +14,9 @@ mysql:
   dbname: "myblog"
   max_open_conns: 20
   max_idle_conns: 10
+redis:
+  host: "192.168.66.128"
+  port: "6379"
+  password: ""
+  db: 1
+  pool_size: 100
