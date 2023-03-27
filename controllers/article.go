@@ -244,6 +244,5 @@ func ManageDeleteSubmit(c *gin.Context) {
 
 func LikeArticle(c *gin.Context) {
 	param := c.Param("id")
-	log.Printf("id param: %v\n", param)
 	service.LikeArticle(param)
 }
