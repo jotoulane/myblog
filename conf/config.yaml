@@ -8,6 +8,7 @@ app:
   jwt_expire: 240
 mysql:
   host: "127.0.0.1"
+  #host: "120.26.58.60"
   port: 3306
   username: "root"
   password: "lihuawei"
@@ -16,6 +17,7 @@ mysql:
   max_idle_conns: 10
 redis:
   host: "192.168.66.128"
+# host: "120.26.58.60"
   port: "6379"
   password: ""
   db: 1

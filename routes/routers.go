@@ -41,6 +41,10 @@ func SetUp() *gin.Engine {
 	r.GET("/alarm", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "alarm.tmpl", gin.H{}) //模板渲染
 	})
+	//照片墙
+	r.GET("/photos", func(context *gin.Context) {
+		context.HTML(http.StatusOK, "photos.tmpl", gin.H{})
+	})
 
 	//注册
 	r.POST("/register", controllers.RegisterHandler)

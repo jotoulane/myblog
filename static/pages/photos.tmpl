@@ -1,0 +1,60 @@
+{{ define "photos.tmpl" }}
+
+{{ template "head.tmpl" . }}
+
+<html>
+<head>
+    <title>photos</title>
+    <link rel="stylesheet" type="text/css" href="/xxx/css/photos.css">
+</head>
+<body>
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="/xxx/img/1.jpg" onclick="openModal('/xxx/img/1.jpg')">
+    </div>
+    <div class="gallery-item">
+        <img src="/xxx/img/2.jpg" onclick="openModal('/xxx/img/2.jpg')">
+    </div>
+    <div class="gallery-item">
+        <img src="/xxx/img/3.jpg" onclick="openModal('/xxx/img/3.jpg')">
+    </div>
+    <div class="gallery-item">
+        <img src="/xxx/img/4.jpg" onclick="openModal('/xxx/img/4.jpg')">
+    </div>
+    <div class="gallery-item">
+        <img src="/xxx/img/博物馆.jpg" onclick="openModal('/xxx/img/博物馆.jpg')">
+    </div>
+    <div class="gallery-item">
+        <img src="/xxx/img/洛邑古城.jpg" onclick="openModal('/xxx/img/洛邑古城.jpg')">
+    </div>
+    <div class="gallery-item">
+        <img src="/xxx/img/白马寺.jpg" onclick="openModal('/xxx/img/白马寺.jpg')">
+    </div>
+    <div class="gallery-item">
+        <img src="/xxx/img/古城洛邑.jpg" onclick="openModal('/xxx/img/古城洛邑.jpg')">
+    </div>
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+</div>
+
+<script>
+    function openModal(imgSrc) {
+        var modal = document.getElementById('myModal');
+        var img = document.getElementById('img01');
+        modal.style.display = 'block';
+        img.src = imgSrc;
+    }
+
+    function closeModal() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'none';
+    }
+</script>
+</body>
+</html>
+{{ template "footer.tmpl" . }}
+
+{{ end }}
