@@ -47,7 +47,7 @@ func NewArticle(c *gin.Context) {
 	c.HTML(http.StatusOK, "alarm.tmpl", model.ResponseData{
 		Code: 200,
 		Msg:  "新建成功",
-		Data: "/lists",
+		Data: "/manage/lists",
 	})
 }
 
