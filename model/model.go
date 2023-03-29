@@ -10,7 +10,7 @@ type User struct {
 	Password string `json:"password" gorm:"type:varchar(100)"`
 	Grade    string `json:"grade" gorm:"type:varchar(100)"`
 	gorm.Model
-	Token string
+	Token string `gorm:"-"`
 }
 
 type Article struct {

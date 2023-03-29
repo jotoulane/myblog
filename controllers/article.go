@@ -73,8 +73,11 @@ func ListTagsArticle(c *gin.Context) {
 	}
 	for i := 0; i < len(articles); i++ {
 		nums, _ := redis.GetViewNums(strconv.FormatInt(articles[i].ArticleID, 10))
+		numsLike, _ := redis.GetLikeNums(strconv.FormatInt(articles[i].ArticleID, 10))
 		articles[i].ReadNum = nums
+		articles[i].LikeNum = numsLike
 	}
+
 	c.HTML(http.StatusOK, "articleList.tmpl", model.ResponseData{
 		Code: 200,
 		Msg:  "查询成功",

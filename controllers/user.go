@@ -21,14 +21,14 @@ func RegisterHandler(c *gin.Context) {
 	//返回响应
 	if res == 0 {
 		//已经存在 或者创建失败
-		c.HTML(http.StatusOK, "alarm.tmpl", &model.ResponseData{
+		c.JSON(http.StatusOK, &model.ResponseData{
 			Code: 200,
 			Msg:  "注册失败,用户名已经存在!",
 			Data: "/register",
 		})
 	} else {
 		//创建成功
-		c.HTML(http.StatusOK, "alarm.tmpl", &model.ResponseData{
+		c.JSON(http.StatusOK, &model.ResponseData{
 			Code: 200,
 			Msg:  "注册成功,请返回登录",
 			Data: "/login",
@@ -46,14 +46,14 @@ func LoginHandler(c *gin.Context) {
 	//判断用户,返回响应
 	err, user := service.QueryUserByUsername(p)
 	if err != nil {
-		c.HTML(http.StatusOK, "alarm.tmpl", model.ResponseData{
+		c.JSON(http.StatusOK, model.ResponseData{
 			Code: 200,
 			Msg:  "密码错误",
 			Data: "/login",
 		})
 	} else {
 		c.Set("user", user)
-		c.HTML(http.StatusOK, "home.tmpl", model.ResponseData{
+		c.JSON(http.StatusOK, model.ResponseData{
 			Code: 200,
 			Msg:  "登录成功!",
 			Data: user.Token,
