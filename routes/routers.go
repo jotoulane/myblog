@@ -58,7 +58,7 @@ func SetUp() *gin.Engine {
 	r.POST("/new", controllers.NewArticle)
 	//文章列表
 	r.GET("/lists", controllers.ListArticle)
-
+	//根据标签分类查询文章
 	r.GET("/lists/:tags", controllers.ListTagsArticle)
 	//文章详情
 	r.GET("/detail/:id", controllers.DetailArticle)
