@@ -30,7 +30,7 @@ func UpdateArticle(article *model.Article) (nums int64) {
 
 func ListArticle() (articles []model.Article, err error) {
 	articles = make([]model.Article, 0)
-	tx := db.Find(&articles)
+	tx := db.Order("created_at desc").Find(&articles)
 	return articles, tx.Error
 }
 
