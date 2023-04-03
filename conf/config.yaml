@@ -1,14 +1,14 @@
 app:
   name: "blog"
   mode: "dev"
-  port: 8081
+  port: 80
   version: v0.0.1
   start_time: "2020-07-01"
   machine_id: 1
   jwt_expire: 240
 mysql:
-  host: "127.0.0.1"
-  #host: "120.26.58.60"
+  #host: "127.0.0.1"
+  host: "120.26.58.60"
   port: 3306
   username: "root"
   password: "lihuawei"
@@ -16,9 +16,9 @@ mysql:
   max_open_conns: 20
   max_idle_conns: 10
 redis:
-  host: "192.168.66.128"
-# host: "120.26.58.60"
+  #host: "192.168.66.128"
+  host: "120.26.58.60"
   port: "6379"
-  password: ""
+  password: "lihuawei"
   db: 1
   pool_size: 100
