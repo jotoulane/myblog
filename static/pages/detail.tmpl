@@ -12,7 +12,7 @@
                 <p class="blog-post-meta">发布日期: {{.Data.CreatedAt}} 更新日期:{{.Data.UpdatedAt}} </p>
                 <p class="blog-post-meta">by <a href="#"> {{.Data.Author}}</a> </p>
 
-                <pre id="pre" style="width: 120%">{{.Data.Content}}</pre>
+                <pre id="pre" style="background-color: white; width: 120%">{{.Data.Content}}</pre>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -33,7 +33,7 @@
     function like(ArticleID){
         axios({
             method:"get",
-            url:"http://localhost:8081/like/"+ArticleID
+            url:"http://120.26.58.60:80/like/"+ArticleID
         }).then(function (resp){
             let a = resp.data;
             console.log(a);
