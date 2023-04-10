@@ -20,13 +20,13 @@
         <div class="col-md-4">
             <h3>Tags</h3>
             <ul class="list-group">
-                <li class="list-group-item"><a href="/lists/golang">Golang</a></li>
-                <li class="list-group-item"><a href="/lists/java">Java</a></li>
-                <li class="list-group-item"><a href="/lists/life">Life</a></li>
+                {{range .Data.category}}
+                <li class="list-group-item"><a href="/lists/{{.}}">{{.}}</a></li>
+                {{end}}
             </ul>
             <h3>Recent Posts</h3>
             <ul class="list-group">
-                {{range .Data}}
+                {{range .Data.articles}}
                 <li class="list-group-item"><a href="/detail/{{.ArticleID}}">{{.Title}}</a></li>
                 {{end}}
             </ul>

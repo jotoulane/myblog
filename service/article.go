@@ -62,3 +62,7 @@ func DeleteArticle(id int64) int64 {
 func LikeArticle(id string) error {
 	return redis.AddLikeNums(id)
 }
+
+func GetCategory() (error, *[]string) {
+	return mysql.GetCategory()
+}

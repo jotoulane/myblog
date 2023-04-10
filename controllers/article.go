@@ -19,10 +19,18 @@ func HomePage(c *gin.Context) {
 		log.Printf("service.LatestArticles() failed, err: %v\n", err)
 		return
 	}
+	err, category := service.GetCategory()
+	if err != nil {
+		log.Printf("service.GetCategory() failed, err: %v\n", err)
+		return
+	}
 	c.HTML(http.StatusOK, "home.tmpl", model.ResponseData{
 		Code: 200,
 		Msg:  nil,
-		Data: articles,
+		Data: gin.H{
+			"articles": articles,
+			"category": category,
+		},
 	})
 }
 

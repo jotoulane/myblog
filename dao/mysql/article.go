@@ -56,3 +56,8 @@ func DeleteArticle(articleID int64) int64 {
 	tx := db.Where("article_id=?", articleID).Delete(&model.Article{})
 	return tx.RowsAffected
 }
+
+func GetCategory() (err error, s *[]string) {
+	tx := db.Table("articles").Group("tags").Select("tags").Find(&s)
+	return tx.Error, s
+}
